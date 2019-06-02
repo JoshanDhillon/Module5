@@ -47,7 +47,9 @@ public class Assig5_Phase3
       Card[] unusedCardsPerPack = null;
       playLabelText[0] = new JLabel( "Computer", JLabel.CENTER );
       playLabelText[1] = new JLabel( "You", JLabel.CENTER );
-
+      playerScore = 0;
+      computerScore = 0;
+      
       //game controls
       gameText = new JLabel("Welcome to High Card!");
       gameStatus = new JLabel("Click on card to begin.");      
@@ -64,7 +66,7 @@ public class Assig5_Phase3
 
       // Deals cards between the number of players
       highCardGame.deal();
-      System.out.print(highCardGame.getHand(0) + "\n");
+      //DEBUG: System.out.print(highCardGame.getHand(0) + "\n");
 
       //Load Icons for cards from GUICard class
       GUICard.loadCardIcons();
@@ -467,6 +469,7 @@ class CardTable extends JFrame implements ActionListener
       fileMenu.add(deal);
       JMenuItem exit = new JMenuItem("Exit");
       exit.addActionListener( this);
+      fileMenu.addSeparator();
       fileMenu.add(exit);
       menuBar.add(fileMenu);
 
@@ -508,20 +511,15 @@ class CardTable extends JFrame implements ActionListener
       return numPlayers;
    }
 
-
-   //@Override
-   // public void actionPerformed(ActionEvent e)
-   {
-      // TODO Auto-generated method stub
-
-   }
-
    @Override
    public void actionPerformed(ActionEvent e)
    {
       String buttonString = e.getActionCommand( );
       if (buttonString.equals("Deal"))
+      {
+         this.setVisible(false);
          Assig5_Phase3.main(null);
+      }
       else if (buttonString.equals("Exit"))
          System.exit(0);
    }
@@ -795,7 +793,6 @@ class Card
                cardArray[nextCard - 1] = cardArray[nextCard];
                cardArray[nextCard] = temp;
             }
-
          }
       }
    }
