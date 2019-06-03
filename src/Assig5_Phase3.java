@@ -472,7 +472,11 @@ class CardTable extends JFrame implements ActionListener
       fileMenu.addSeparator();
       fileMenu.add(exit);
       menuBar.add(fileMenu);
-
+      JMenu helpMenu = new JMenu("Help");
+      JMenuItem about = new JMenuItem("About");
+      about.addActionListener(this);
+      helpMenu.add(about);
+      menuBar.add(helpMenu);
       JMenuBar bar = new JMenuBar( );
       bar.add(menuBar);
       setJMenuBar(bar);
@@ -522,6 +526,18 @@ class CardTable extends JFrame implements ActionListener
       }
       else if (buttonString.equals("Exit"))
          System.exit(0);
+      else if (buttonString.contentEquals("About"))
+            JOptionPane.showMessageDialog(this,
+                  "GUI Cards\n\n" 
+                  + "A project by:\n " 
+                  + " Abby Packham\n" 
+                  + "  Carlos Orduna\n" 
+                  + "  Dalia Faria\n"
+                  + "  George Blombach\n" 
+                  + "  Roger Terrill\n\n" 
+                  + " "
+                  + "CSUMB CST338\n"
+                  + "June 2019");
    }
 }
 
