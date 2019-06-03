@@ -37,7 +37,7 @@ public class Assig5_Phase3
 
 
    public static void main(String[] args)
-   { 
+   {
       // Initializing instance variables for CardGameFramework
       int card;
       Icon tempIcon;
@@ -49,10 +49,10 @@ public class Assig5_Phase3
       playLabelText[1] = new JLabel( "You", JLabel.CENTER );
       playerScore = 0;
       computerScore = 0;
-      
+
       //game controls
       gameText = new JLabel("Welcome to High Card!");
-      gameStatus = new JLabel("Click on card to begin.");      
+      gameStatus = new JLabel("Click on card to begin.");
       gameText.setForeground(Color.red);
       gameStatus.setForeground(Color.red);
 
@@ -73,15 +73,15 @@ public class Assig5_Phase3
 
       // establish main frame in which program will run
       CardTable myCardTable
-      = new CardTable("CardTable", NUM_CARDS_PER_HAND, NUM_PLAYERS);
+            = new CardTable("CardTable", NUM_CARDS_PER_HAND, NUM_PLAYERS);
       myCardTable.setSize(800, 600);
       myCardTable.setLocationRelativeTo(null);
       myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
       //add mouse adapter
-      MouseAdapter mouseAdapter = new MouseAdapter() 
+      MouseAdapter mouseAdapter = new MouseAdapter()
       {
-         public void mouseClicked(MouseEvent e) 
+         public void mouseClicked(MouseEvent e)
          {
             playGame(myCardTable.pnlHumanHand.getComponentZOrder
                   (e.getComponent()));
@@ -107,7 +107,7 @@ public class Assig5_Phase3
             humanLabels[index].setVisible(false);
 
             //move to playing field
-            playedCardLabels[1].setIcon(humanLabels[index].getIcon()); 
+            playedCardLabels[1].setIcon(humanLabels[index].getIcon());
 
             /* DEBUG System.out.print(Card.valueOfCard(highCardGame.getHand(1)
              * .inspectCard(index)) + "\n");
@@ -116,9 +116,9 @@ public class Assig5_Phase3
              * .inspectCard(index)) + "\n");
              */
 
-            //get computer hand 
+            //get computer hand
             computerPlay(Card.valueOfCard(highCardGame.getHand(1)
-                  .inspectCard(index)));
+                                                      .inspectCard(index)));
          }
 
          private void computerPlay(int highCard)
@@ -171,7 +171,7 @@ public class Assig5_Phase3
                {
                   //unhide placeholder
                   playedCardLabels[0].setVisible(true);
-               }   
+               }
                //hide card just played
                computerLabels[minInd].setVisible(false);
 
@@ -209,7 +209,7 @@ public class Assig5_Phase3
          //give Human a card
          tempIcon = GUICard.getIcon(highCardGame.getHand(1).inspectCard(card));
          humanLabels[card] = new JLabel(tempIcon);
-         humanLabels[card].addMouseListener(mouseAdapter); 
+         humanLabels[card].addMouseListener(mouseAdapter);
       }
 
       // ADD LABELS TO PANELS -----------------------------------------
@@ -260,7 +260,7 @@ public class Assig5_Phase3
 }
 
 /*****************************************************************************
- *                        End of Assig5_Phase3                                 
+ *                        End of Assig5_Phase3
  *****************************************************************************/
 
 /*****************************************************************************
@@ -285,8 +285,8 @@ class CardGameFramework
    // use cards 2-8 of any suit
 
    public CardGameFramework( int numPacks, int numJokersPerPack,
-         int numUnusedCardsPerPack,  Card[] unusedCardsPerPack,
-         int numPlayers, int numCardsPerHand)
+                             int numUnusedCardsPerPack,  Card[] unusedCardsPerPack,
+                             int numPlayers, int numCardsPerHand)
    {
       int k;
 
@@ -302,7 +302,7 @@ class CardGameFramework
       // one of many ways to assure at least one full deal to all players
       if  (numCardsPerHand < 1 ||
             numCardsPerHand >  numPacks * (52 - numUnusedCardsPerPack)
-            / numPlayers )
+                  / numPlayers )
          numCardsPerHand = numPacks * (52 - numUnusedCardsPerPack) / numPlayers;
 
       // allocate
@@ -366,6 +366,10 @@ class CardGameFramework
          for ( j = 0; j < numJokersPerPack; j++)
             deck.addCard( new Card('X', Card.Suit.values()[j]) );
 
+      // Sorts the deck and displays it to verify only two jokers are present
+      deck.sort();
+      deck.toString();
+
       // shuffle the cards
       deck.shuffle();
    }
@@ -411,7 +415,7 @@ class CardGameFramework
             cardIndex < 0 || cardIndex > numCardsPerHand - 1)
       {
          //Creates a card that does not work
-         return new Card('M', Card.Suit.SPADES);      
+         return new Card('M', Card.Suit.SPADES);
       }
 
       // return the card played
@@ -437,8 +441,8 @@ class CardGameFramework
  *****************************************************************************/
 
 /*****************************************************************************
- * CardTable  - Class that embodies the JPanels and Layout(s) needed for the 
- * application. This is where all the cards and controls will be placed. 
+ * CardTable  - Class that embodies the JPanels and Layout(s) needed for the
+ * application. This is where all the cards and controls will be placed.
  *****************************************************************************/
 class CardTable extends JFrame implements ActionListener
 {
@@ -527,16 +531,16 @@ class CardTable extends JFrame implements ActionListener
       else if (buttonString.equals("Exit"))
          System.exit(0);
       else if (buttonString.contentEquals("About"))
-            JOptionPane.showMessageDialog(this,
-                  "GUI Cards\n\n" 
-                  + "A project by:\n " 
-                  + " Abby Packham\n" 
-                  + "  Carlos Orduna\n" 
-                  + "  Dalia Faria\n"
-                  + "  George Blombach\n" 
-                  + "  Roger Terrill\n\n" 
-                  + " "
-                  + "CSUMB CST338, June 2019");
+         JOptionPane.showMessageDialog(this,
+               "GUI Cards\n\n"
+                     + "A project by:\n "
+                     + " Abby Packham\n"
+                     + "  Carlos Orduna\n"
+                     + "  Dalia Faria\n"
+                     + "  George Blombach\n"
+                     + "  Roger Terrill\n\n"
+                     + " "
+                     + "CSUMB CST338, June 2019");
    }
 }
 
@@ -545,7 +549,7 @@ class CardTable extends JFrame implements ActionListener
  *****************************************************************************/
 
 /*****************************************************************************
- * GUICard - A class that manages the reading and building of the card image 
+ * GUICard - A class that manages the reading and building of the card image
  * Icons                                                 *
  *****************************************************************************/
 
@@ -563,8 +567,8 @@ class GUICard
          return;
       for (int cardValue = 0; cardValue < iconCards.length; cardValue++)
       {
-         for (int cardSuit = 0; cardSuit < iconCards[cardValue].length; 
-               cardSuit++)
+         for (int cardSuit = 0; cardSuit < iconCards[cardValue].length;
+              cardSuit++)
          {
             //numCard will return string at index cardValue
             //numSuit will return suit at index cardSuit
@@ -581,8 +585,8 @@ class GUICard
    //  Changes integer to the card value
    static String numCard(int cardNum)
    {
-      String[] cardValues = 
-         {"A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "X"};
+      String[] cardValues =
+            {"A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "X"};
       return cardValues[cardNum];
    }
 
@@ -610,16 +614,16 @@ class GUICard
 
       switch (cardSuit)
       {
-      case CLUBS:
-         return 0;
-      case DIAMONDS:
-         return 1;
-      case HEARTS:
-         return 2;
-      case SPADES:
-         return 3;
-      default:
-         return -1;
+         case CLUBS:
+            return 0;
+         case DIAMONDS:
+            return 1;
+         case HEARTS:
+            return 2;
+         case SPADES:
+            return 3;
+         default:
+            return -1;
       }
    }
 
@@ -645,7 +649,7 @@ class GUICard
 class Card
 {
    public enum Suit{CLUBS, DIAMONDS, HEARTS, SPADES};
-   //public static char[] valuRanks = 
+   //public static char[] valuRanks =
    //{'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'X'};
    public static String valuRanks = "A23456789TJQKX";
    private char value;
@@ -1022,9 +1026,9 @@ class Hand
  *****************************************************************************/
 class Deck
 {
-   public static final int DECK_SIZE = 56;
+   public static final int DECK_SIZE = 52;
    public static final int MAX_CARDS = 6 * DECK_SIZE;
-   public static final int NUM_OF_VALUES = 14;
+   public static final int NUM_OF_VALUES = 13;
 
    private static Card[] masterPack = new Card[DECK_SIZE];
    private Card[] cards = new Card[MAX_CARDS];
@@ -1160,31 +1164,31 @@ class Deck
 
       if (masterPack[0] == null)
       {
-         for (masterPackIndex = 0; masterPackIndex < DECK_SIZE; 
-               masterPackIndex++)
+         for (masterPackIndex = 0; masterPackIndex < DECK_SIZE;
+              masterPackIndex++)
          {
             if (masterPackIndex / NUM_OF_VALUES == 0)
             {
                masterPack[masterPackIndex] =
-                     new Card(cardValues.charAt(masterPackIndex % 
+                     new Card(cardValues.charAt(masterPackIndex %
                            NUM_OF_VALUES), Card.Suit.SPADES);
             }
             if (masterPackIndex / NUM_OF_VALUES == 1)
             {
                masterPack[masterPackIndex] =
-                     new Card(cardValues.charAt(masterPackIndex % 
+                     new Card(cardValues.charAt(masterPackIndex %
                            NUM_OF_VALUES), Card.Suit.CLUBS);
             }
             if (masterPackIndex / NUM_OF_VALUES == 2)
             {
                masterPack[masterPackIndex] =
-                     new Card(cardValues.charAt(masterPackIndex % 
+                     new Card(cardValues.charAt(masterPackIndex %
                            NUM_OF_VALUES), Card.Suit.HEARTS);
             }
             if (masterPackIndex / NUM_OF_VALUES == 3)
             {
                masterPack[masterPackIndex] =
-                     new Card(cardValues.charAt(masterPackIndex % 
+                     new Card(cardValues.charAt(masterPackIndex %
                            NUM_OF_VALUES), Card.Suit.DIAMONDS);
             }
          }
