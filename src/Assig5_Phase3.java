@@ -162,7 +162,7 @@ public class Assig5_Phase3
 
                //set display
                computerScore ++;
-               updateGame("Computer Wins ");
+               updateGame("Computer Wins");
             }
             else
             {
@@ -183,7 +183,7 @@ public class Assig5_Phase3
 
                //set display
                playerScore ++;
-               updateGame("You win: ");
+               updateGame("You win");
             }
          }
 
@@ -195,7 +195,7 @@ public class Assig5_Phase3
             if (computerScore + playerScore == NUM_CARDS_PER_HAND)
                if (computerScore > playerScore)
                   gameText.setText("Game Over Computer Wins");
-               else if (playerScore == 4)
+               else
                   gameText.setText("Game Over You Win!");
          }
       }; //end of mouseAdapter
@@ -536,8 +536,7 @@ class CardTable extends JFrame implements ActionListener
                   + "  George Blombach\n" 
                   + "  Roger Terrill\n\n" 
                   + " "
-                  + "CSUMB CST338\n"
-                  + "June 2019");
+                  + "CSUMB CST338, June 2019");
    }
 }
 
