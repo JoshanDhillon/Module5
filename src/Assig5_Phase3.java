@@ -760,7 +760,7 @@ class Card
    public boolean equals(Card card)
    {
 
-      return (value == card.value && suit == card.suit);
+      return (value == card.value && suit == card.suit && errorFlag == card.errorFlag);
    }
 
    /**
